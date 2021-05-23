@@ -1,0 +1,51 @@
+body{
+	text-align: center;
+}
+
+.log_in_forms{
+    margin-top: 10%;
+	margin-left: 25%;
+	margin-right: 25%;
+	padding: 5%;
+}
+
+.log_in_forms1{
+    text-align: center;
+	margin-left: 25%;
+	margin-right: 25%;
+	padding: 5%;
+}
+
+.my_content{
+    margin-left: 44%;
+	margin-right: 44%;
+}
+
+.courier_to_order{
+    border-style: solid;
+    border-color: #dc3545;
+    margin-left: 38%;
+	margin-right: 38%;
+	border-radius: 5%;
+}
+
+.my_content_courier{
+    margin-left: 35%;
+	margin-right: 35%;
+}
+
+.my_error{
+    margin-left: 20%;
+	margin-right: 20%;
+	margin-bottom: 5%;
+	margin-top: 5%;
+	border-color: #dc3545;
+	border-radius: 5%;
+	padding: 2%;
+	background-color: #dc3545;
+	text-color: #000;
+}
+
+.my_map{
+    text-align: center;
+}

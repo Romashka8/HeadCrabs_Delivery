@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h1>
+    Привет, {{ courier_login }}!
+</h1>
+{% if busy == "not" %}
+<div class="login_forms1">
+    <div class="my_content">
+        <form method="post" , action="/take_order">
+            <div class="input-group mb-3">
+                <p><input type="text" name="ord_id" placeholder="введите id заказа"></p>
+            </div>
+            <p>
+                <button type="submit" class="btn btn-warning">Взять заказ</button>
+            </p>
+        </form>
+    </div>
+</div>
+<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+<script type="text/javascript">
+            var map;
+            var myIcon;
+
+            myIcon = DG.icon({
+                    iconUrl: 'static/images/my-icon.png',
+                    iconRetinaUrl: 'my-icon@2x.png',
+                    iconSize: [38, 95],
+                    iconAnchor: [22, 94],
+                    popupAnchor: [-3, -76],
+                    shadowUrl: 'my-icon-shadow.png',
+                    shadowRetinaUrl: 'my-icon-shadow@2x.png',
+                    shadowSize: [68, 95],
+                    shadowAnchor: [22, 94]
+                });
+
+
+            DG.then(function () {
+                map = DG.map('map', {
+                    center: {{ map_center }},
+                    zoom: 13
+                });
+
+                DG.marker({{ courier_cor_list }}, {icon: myIcon}).addTo(map).bindPopup('{{ courier_login }}');
+                {% for i in range(orders_count) %}
+                    DG.marker({{ orders_list[i] }}).addTo(map).bindPopup('{{ orders_name[in_str(orders_list[i])] }}');
+                {% endfor %}
+            });
+
+</script>
+<div id="map" style="width:500px; height:400px; margin:auto"></div>
+{% elif busy == "yes" %}
+<p>
+    Вы выполняете заказ - {{ text_cur_order }}
+</p>
+<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+<script type="text/javascript">
+            var map;
+
+            DG.then(function () {
+                map = DG.map('map', {
+                    center: {{ map_center }},
+                    zoom: 13
+                });
+
+                DG.marker({{ courier_cor_list }}).addTo(map).bindPopup('{{ courier_login }}');
+                DG.marker({{ [cur_order[0], cur_order[1]] }}).addTo(map).bindPopup('{{ text_cur_order }}');
+            });
+</script>
+<div id="map" style="width:500px; height:400px; margin:auto"></div>
+{% endif %}
+
+{% endblock %}

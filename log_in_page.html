@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Авторизация
+{% endblock %}
+
+{% block body %}
+<div class="admin_forms">
+    <form method="post", action="/admin_auth">
+        <p><input type="text" name="adm_login" placeholder="Введите логин"></p>
+        <p><input type="text" name="adm_password" placeholder="Введите пароль"></p>
+        <p><button type="submit">Войти!</button></p>
+    </form>
+</div>
+{% endblock %}

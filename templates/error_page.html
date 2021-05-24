@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block body %}
+    <h1>Возникла ошибка!</h1>
+    <div class="my_error">
+        <p>
+            <h3>
+                Возникла ошибка при обработке данных.<br>
+                Возможно, вы ввели неверные данные.<br>
+                Проверьте данные на корректность и попробуйте ещё раз!<br>
+            </h3>
+        </p>
+    </div>
+    <p>
+        <a href="/main_page" class="btn btn-outline-warning">На главную</a>
+    </p>
+{% endblock %}

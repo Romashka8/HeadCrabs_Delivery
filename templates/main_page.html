@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block title %}
+main_page
+{% endblock %}
+
+{% block body %}
+    <h1>Добро пожаловать!</h1>
+    {% if status == "unknown" %}
+        <p><a href="/status_courier" class="btn btn-warning">Я курьер</a></p>
+        <p><a href="/status_admin" class="btn btn-warning">Я админ</a></p>
+    {% elif status == "courier" %}
+        <div  class="log_in_forms1">
+            <div class="my_content_courier">
+                <form method="post" action="/courier_auth">
+                    <div class="input-group mb-3">
+                        <p><input type="text" name="courier_id" placeholder="Введите свой ID"></p>
+                    </div>
+                    <div class="input-group mb-3">
+                        <p><input type="text" name="courier_login" placeholder="Введите свой логин"></p>
+                    </div>
+                    <p><button type="submit" class="btn btn-warning">Отправить</button></p>
+                </form>
+            </div>
+        </div>
+    {% elif status == "admin" %}
+        <div class="log_in_forms1">
+            <div class="my_content_courier">
+                <form method="post" action="/admin_auth">
+                    <div class="input-group mb-3">
+                        <p><input type="text" name="adm_login" placeholder="Введите логин"></p>
+                    </div>
+                    <div class="input-group mb-3">
+                        <p><input type="password" name="adm_password" placeholder="Введите пароль"></p>
+                    </div>
+                    <p><button type="submit" class="btn btn-warning">Отправить</button></p>
+                </form>
+            </div>
+        </div>
+    {% endif %}
+    <p>
+        <img src="static\images\map.jpg" width="400" height="400" class="img-fluid">
+    </p>
+
+{% endblock %}

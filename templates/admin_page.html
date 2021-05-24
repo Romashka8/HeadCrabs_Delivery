@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block body %}
+<h1>
+  Привет, {{ admin_login }}!
+</h1>
+<div class="login_forms1">
+  <div class="my_content">
+    <form method="post", action="/give_order">
+      <div class="input-group mb-3">
+        <p><input type="text" name="ord_id" placeholder="введите id заказа" class="form-control"></p>
+       </div>
+      <div class="input-group mb-3">
+        <p><input type="text" name="cour_id" placeholder="введите id курьера" class="form-control"></p>
+      </div>
+      <p><button type="submit" class="btn btn-warning">Дать заказ</button></p>
+    </form>
+  </div>
+</div>
+<script src="https://maps.api.2gis.ru/2.0/loader.js?pkg=full"></script>
+<script type="text/javascript">
+            var map;
+
+            DG.then(function () {
+                map = DG.map('map', {
+                    center: {{ map_center }},
+                    zoom: 13
+                });
+            {% for i in range(couriers_count) %}
+                DG.marker({{ all_couriers_start_location_list[i] }}).addTo(map).bindPopup('{{ all_couriers_list[i] }}');
+            {% endfor %}
+            {% for i in range(orders_count) %}
+                DG.marker({{ orders_list[i] }}).addTo(map).bindPopup('{{ orders_name[in_str(orders_list[i])] }}');
+            {% endfor %}
+            });
+</script>
+<div id="map" style="width:500px; height:400px; margin:auto"></div>
+<p>
+  Текущие заказы:
+  <div class="courier_to_order">
+  {% for i in cour_to_ord %}
+    <p>{{ i }} выполняет {{ cour_to_ord[i] }}</p>
+  {% endfor %}
+  </div>
+</p>
+{% endblock %}
